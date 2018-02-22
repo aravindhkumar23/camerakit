@@ -96,6 +96,7 @@ public class CameraView extends FrameLayout implements LifecycleObserver {
     private int mJpegQuality;
     private boolean mCropOutput;
 
+    private boolean mDisableAutoRotate;
     private boolean mAdjustViewBounds;
     private CameraListenerMiddleWare mCameraListener;
 
@@ -137,6 +138,7 @@ public class CameraView extends FrameLayout implements LifecycleObserver {
                 mJpegQuality = a.getInteger(com.wonderkiln.camerakit.R.styleable.CameraView_ckJpegQuality, CameraKit.Defaults.DEFAULT_JPEG_QUALITY);
                 mCropOutput = a.getBoolean(com.wonderkiln.camerakit.R.styleable.CameraView_ckCropOutput, CameraKit.Defaults.DEFAULT_CROP_OUTPUT);
                 mAdjustViewBounds = a.getBoolean(com.wonderkiln.camerakit.R.styleable.CameraView_android_adjustViewBounds, CameraKit.Defaults.DEFAULT_ADJUST_VIEW_BOUNDS);
+                mDisableAutoRotate = a.getBoolean(R.styleable.CameraView_ckDisableAutoRotate, false);
             } finally {
                 a.recycle();
             }
@@ -168,6 +170,9 @@ public class CameraView extends FrameLayout implements LifecycleObserver {
             mDisplayOrientationDetector = new DisplayOrientationDetector(context) {
                 @Override
                 public void onDisplayOrDeviceOrientationChanged(int displayOrientation, int deviceOrientation) {
+                    if (mDisableAutoRotate) {
+                        return;
+                    }
                     mCameraImpl.setDisplayAndDeviceOrientation(displayOrientation, deviceOrientation);
                     mPreviewImpl.setDisplayOrientation(displayOrientation);
                 }
