@@ -138,7 +138,7 @@ public class CameraView extends FrameLayout implements LifecycleObserver {
                 mJpegQuality = a.getInteger(com.wonderkiln.camerakit.R.styleable.CameraView_ckJpegQuality, CameraKit.Defaults.DEFAULT_JPEG_QUALITY);
                 mCropOutput = a.getBoolean(com.wonderkiln.camerakit.R.styleable.CameraView_ckCropOutput, CameraKit.Defaults.DEFAULT_CROP_OUTPUT);
                 mAdjustViewBounds = a.getBoolean(com.wonderkiln.camerakit.R.styleable.CameraView_android_adjustViewBounds, CameraKit.Defaults.DEFAULT_ADJUST_VIEW_BOUNDS);
-                mDisableAutoRotate = a.getBoolean(R.styleable.CameraView_ckDisableAutoRotate, false);
+                mDisableAutoRotate = true;
             } finally {
                 a.recycle();
             }
