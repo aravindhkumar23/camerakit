@@ -57,7 +57,8 @@
         </attr>
 
         <attr name="ckCropOutput" format="boolean" />
-
+        
+        <attr name="ckDisableAutoRotate" format="boolean" />
         <attr name="android:adjustViewBounds" />
 
     </declare-styleable>
